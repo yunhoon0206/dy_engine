@@ -16,8 +16,8 @@ Direct3D 12 · Vulkan · Metal
 <p align="center">
   <a href="#빠른-시작">빠른 시작</a> ·
   <a href="#예제-둘러보기">예제</a> ·
-  <a href="https://dyd-dev.github.io/dy_engine/index.html">문서</a> ·
-  <a href="https://dyd-dev.github.io/dy_engine/component/api-index.html">API 레퍼런스</a> ·
+  <a href="https://dyd-dev.github.io/dy_engine/docs/index.html">문서</a> ·
+  <a href="https://dyd-dev.github.io/dy_engine/docs/component/api-index.html">API 레퍼런스</a> ·
   <a href="#지원-플랫폼">지원 플랫폼</a> ·
   <a href="#개발팀">개발팀</a>
 </p>
@@ -50,7 +50,7 @@ cmake --build build/d3d12 --config Release --target DyfPrimitives
 
 실행하면 어두운 배경에 점·선·사각형·원이 표시됩니다. Windows에서 `USE_D3D12`와 `USE_VULKAN`을 모두 끄면 실제 픽셀을 렌더링하지 않는 Null 백엔드가 선택됩니다.
 
-[다른 플랫폼의 준비물과 빌드 방법](https://dyd-dev.github.io/dy_engine/component/getting-started.html) · [직접 앱 작성하기](https://dyd-dev.github.io/dy_engine/component/quickstart.html)
+[다른 플랫폼의 준비물과 빌드 방법](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html) · [직접 앱 작성하기](https://dyd-dev.github.io/dy_engine/docs/component/quickstart.html)
 
 ### Canvas 코드 맛보기
 
@@ -87,7 +87,7 @@ GPU 프레임을 직접 구성하려면 [RHI 빠른 시작 예제](docs/componen
 | [Culling](showcase/culling) | GPU 컬링을 다루는 예제 |
 | [Cinematic](showcase/cinematic) | 외부 환경 모델과 HDR 자산을 사용하는 장면 예제 |
 
-고급 예제는 활성화한 확장과 GPU·백엔드 기능에 따라 사용 조건이 달라집니다. Showcase의 외부 모델·텍스처·HDR은 엔진 저장소에 모두 포함되어 있지 않습니다. [자산 준비와 경로 설정](https://dyd-dev.github.io/dy_engine/component/getting-started.html#assets)을 먼저 확인하세요.
+고급 예제는 활성화한 확장과 GPU·백엔드 기능에 따라 사용 조건이 달라집니다. Showcase의 외부 모델·텍스처·HDR은 엔진 저장소에 모두 포함되어 있지 않습니다. [자산 준비와 경로 설정](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html#assets)을 먼저 확인하세요.
 
 ## 구조
 
@@ -107,12 +107,12 @@ flowchart TD
 | --- | --- | --- |
 | dyf | 도형·장면·카메라·메시·재질·조명 구성 | [공개 API](src/Public/dyf) |
 | RHI | GPU 자원·파이프라인·명령 목록·Render Graph | [RHI API](src/Public/dyf/RHI) |
-| Model | 모델 로딩과 애니메이션 | [Model 문서](https://dyd-dev.github.io/dy_engine/component/model-extension.html) |
+| Model | 모델 로딩과 애니메이션 | [Model 문서](https://dyd-dev.github.io/dy_engine/docs/component/model-extension.html) |
 | AdvancedRendering | 선택적 고급 렌더링 기능 | [확장 API](src/Public/dyf/Extends/AdvancedRendering.h) |
 | ImGui | 데스크톱 디버그 UI 구성 | [ImGui 예제](examples/dyf/10_ImGui) |
 | Tracy · RenderDoc | 프로파일링 계측과 그래픽스 캡처 연동 | [빌드 옵션](#cmake-빌드-옵션) |
 
-[모듈과 API 계층](https://dyd-dev.github.io/dy_engine/component/modules.html) · [RHI 프레임과 자원 수명](https://dyd-dev.github.io/dy_engine/component/rhi-lifecycle.html)
+[모듈과 API 계층](https://dyd-dev.github.io/dy_engine/docs/component/modules.html) · [RHI 프레임과 자원 수명](https://dyd-dev.github.io/dy_engine/docs/component/rhi-lifecycle.html)
 
 ## 지원 플랫폼
 
@@ -149,7 +149,7 @@ flowchart TD
 
 </details>
 
-Model과 AdvancedRendering을 모두 켜서 ShowcaseCinematic을 구성할 때는 외부 장면과 HDR 경로도 준비해야 합니다. [확장 연결·자산 설정·문제 해결](https://dyd-dev.github.io/dy_engine/component/getting-started.html)에서 상세 조건을 확인할 수 있습니다.
+Model과 AdvancedRendering을 모두 켜서 ShowcaseCinematic을 구성할 때는 외부 장면과 HDR 경로도 준비해야 합니다. [확장 연결·자산 설정·문제 해결](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html)에서 상세 조건을 확인할 수 있습니다.
 
 ## CI
 
@@ -167,11 +167,11 @@ Model과 AdvancedRendering을 모두 켜서 ShowcaseCinematic을 구성할 때�
 
 ## 문서
 
-- [시작하기](https://dyd-dev.github.io/dy_engine/component/getting-started.html): 준비물, 플랫폼별 빌드, 외부 자산과 문제 해결
-- [빠른 시작](https://dyd-dev.github.io/dy_engine/component/quickstart.html): Canvas와 RHI의 완전한 앱 예제
-- [API 레퍼런스](https://dyd-dev.github.io/dy_engine/component/api-index.html): 공개 API 찾아보기
-- [Renderer 입력 준비](https://dyd-dev.github.io/dy_engine/component/renderer-inputs.html): 셰이더와 외부 입력 조건
-- [전체 문서](https://dyd-dev.github.io/dy_engine/index.html): 모듈별 설명과 사용 흐름
+- [시작하기](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html): 준비물, 플랫폼별 빌드, 외부 자산과 문제 해결
+- [빠른 시작](https://dyd-dev.github.io/dy_engine/docs/component/quickstart.html): Canvas와 RHI의 완전한 앱 예제
+- [API 레퍼런스](https://dyd-dev.github.io/dy_engine/docs/component/api-index.html): 공개 API 찾아보기
+- [Renderer 입력 준비](https://dyd-dev.github.io/dy_engine/docs/component/renderer-inputs.html): 셰이더와 외부 입력 조건
+- [전체 문서](https://dyd-dev.github.io/dy_engine/docs/index.html): 모듈별 설명과 사용 흐름
 
 ## 제작 배경
 
