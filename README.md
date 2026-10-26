@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/readme/dy-engine-banner.png" alt="dy_engine — Graphics framework. 청록색 배경의 기하학 심볼과 로고" width="100%">
+</p>
+
 <h1 align="center">dy_engine</h1>
 
 <p align="center"><strong>장면 구성부터 명시적 GPU 제어까지.</strong></p>
@@ -13,7 +17,9 @@ Direct3D 12 · Vulkan · Metal
   <a href="#빠른-시작">빠른 시작</a> ·
   <a href="#예제-둘러보기">예제</a> ·
   <a href="https://dyd-dev.github.io/dy_engine/index.html">문서</a> ·
-  <a href="https://dyd-dev.github.io/dy_engine/component/api-index.html">API 레퍼런스</a>
+  <a href="https://dyd-dev.github.io/dy_engine/component/api-index.html">API 레퍼런스</a> ·
+  <a href="#지원-플랫폼">지원 플랫폼</a> ·
+  <a href="#개발팀">개발팀</a>
 </p>
 
 ---
