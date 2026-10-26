@@ -7,6 +7,8 @@ Canvas · Scene · Renderer와 저수준 RHI를 제공하는 C++17 그래픽스 
 Direct3D 12 · Vulkan · Metal
 </p>
 
+<p align="center">졸업작품 프로젝트 · [학교명] [학과명] · [제작 연도]</p>
+
 <p align="center">
   <a href="#빠른-시작">빠른 시작</a> ·
   <a href="#예제-둘러보기">예제</a> ·
@@ -164,3 +166,17 @@ Model과 AdvancedRendering을 모두 켜서 ShowcaseCinematic을 구성할 때�
 - [API 레퍼런스](https://dyd-dev.github.io/dy_engine/component/api-index.html): 공개 API 찾아보기
 - [Renderer 입력 준비](https://dyd-dev.github.io/dy_engine/component/renderer-inputs.html): 셰이더와 외부 입력 조건
 - [전체 문서](https://dyd-dev.github.io/dy_engine/index.html): 모듈별 설명과 사용 흐름
+
+## 제작 배경
+
+dy_engine은 **[학교명] [학과명]의 [제작 연도] 졸업작품 프로젝트**입니다.
+
+장면 데이터를 구성하는 상위 API부터 GPU 자원과 명령 실행을 다루는 저수준 RHI까지 직접 설계하고 구현하며, 그래픽스 시스템의 구조와 실행 흐름을 탐구합니다. 데이터 지향 설계와 명시적 GPU 제어를 실제 프레임워크에 적용하고, 예제와 문서를 통해 설계와 사용 방법을 전달하는 것을 목표로 합니다.
+
+## 개발팀
+
+<!-- 실제 팀원 수에 맞춰 행을 추가하고, 이름·담당 영역·주요 기여·GitHub 주소를 채워주세요. -->
+
+| 개발자 | 담당 영역 | 주요 기여 | GitHub |
+| --- | --- | --- | --- |
+| [이름 입력 예정] | [담당 영역 입력 예정] | [설계·구현·검증한 내용 입력 예정] | [GitHub 주소 입력 예정] |
