@@ -181,6 +181,9 @@ dy_engine은 **동양미래대학교 컴퓨터소프트웨어공학과의 2026 �
 
 ## 개발팀
 
-| 이름 |  [![GitHub](https://img.shields.io/badge/한재승-181717?style=flat-square&logo=github)](https://github.com/suhanjin17)| [![GitHub](https://img.shields.io/badge/윤훈-181717?style=flat-square&logo=github)](https://github.com/yunhoon0206) | [![GitHub](https://img.shields.io/badge/정준혁-181717?style=flat-square&logo=github)](https://github.com/Wnsgur7318) |  [![GitHub](https://img.shields.io/badge/정현진-181717?style=flat-square&logo=github)](https://github.com/junghj0724)|
-| :---: | :---: | :---: | :---: | :---: |
-|역할 |Core/RHI|Vulkan|Metal|DirectX12|
+| 개발자 | 담당 영역 | GitHub |
+| --- | --- | --- |
+| **한재승** | Core / RHI | [@suhanjin17](https://github.com/suhanjin17) |
+| **윤훈** | Vulkan | [@yunhoon0206](https://github.com/yunhoon0206) |
+| **정준혁** | Metal | [@Wnsgur7318](https://github.com/Wnsgur7318) |
+| **정현진** | DirectX 12 | [@junghj0724](https://github.com/junghj0724) |
