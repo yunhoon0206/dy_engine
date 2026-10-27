@@ -27,9 +27,38 @@ Direct3D 12·Vulkan·Metal을 공통 인터페이스로 연결하며, 장면을 
 
 <sub>동양미래대학교 컴퓨터소프트웨어공학과 · 2026 졸업작품 프로젝트</sub>
 
-## 실행 화면
+<a id="왜-dy_engine인가"></a>
 
-아래 화면은 이 저장소의 예제를 직접 빌드하고 실행해 촬영했습니다.
+## 주요 기능
+
+- **여러 그래픽스 API를 공통 구조로 다룹니다.** Direct3D 12·Vulkan·Metal 백엔드를 공통 GPU 인터페이스로 연결합니다.
+- **2D 도형부터 3D 장면까지 구성합니다.** 도형, 메시, 재질, 카메라와 조명을 사용해 화면을 만듭니다.
+- **GPU 작업을 직접 구성할 수 있습니다.** GPU 자원과 그리기 명령을 만들고, 자원의 사용 상태와 명령 제출을 관리합니다.
+- **필요한 기능을 선택해 추가합니다.** 모델 로딩, 고급 렌더링, 디버그 UI 등의 확장을 빌드 옵션으로 선택합니다.
+
+<a id="지원-플랫폼"></a>
+
+## 지원 환경
+
+아래는 저장소에 구성된 플랫폼별 그래픽스 백엔드입니다. 기능별 지원 여부는 백엔드와 장치에 따라 달라집니다.
+
+| 플랫폼 | 그래픽스 백엔드 |
+| --- | --- |
+| Windows | Direct3D 12 / Vulkan |
+| Linux | Vulkan |
+| macOS | Metal |
+| Android | Vulkan |
+| iOS | Metal |
+
+Linux의 창 시스템은 X11 / Wayland를 대상으로 구성하며, Android와 iOS는 플랫폼별 앱 프로젝트를 사용합니다. 백엔드 선택과 설정은 [개발 안내](#개발-안내)를 참고하세요.
+
+데스크톱 ImGui 확장은 모바일에서 사용할 수 없으며, Metal 캡처에는 Xcode GPU Capture를 사용합니다.
+
+<a id="실행-화면"></a>
+
+## 실행 예제
+
+점과 선을 그리는 작은 예제에서 메시·재질·조명을 사용하는 3D 장면으로 이어집니다. 아래 화면은 이 저장소의 예제를 직접 빌드하고 실행해 촬영했습니다.
 
 | 2D 도형 그리기 | 3D 모델의 재질과 조명 표현하기 |
 | --- | --- |
@@ -38,27 +67,36 @@ Direct3D 12·Vulkan·Metal을 공통 인터페이스로 연결하며, 장면을 
 
 촬영 환경: Windows · Direct3D 12 · Release. 3D 화면 상단의 숫자는 엔진의 실행 진단 표시입니다.
 
-## 제작 배경
+위의 2D 도형 예제는 [빠른 시작](#빠른-시작)의 명령으로 실행할 수 있습니다.
 
-**렌더링은 도형과 모델의 데이터를 화면에 보이는 이미지로 만드는 과정입니다.** 그 안에서는 데이터를 GPU로 보내고, 무엇을 어떤 순서로 그릴지 정하고, 작업이 끝날 때까지 자원을 관리해야 합니다.
+### 예제 둘러보기
 
-우리는 이 과정을 직접 구현하면서 **서로 다른 그래픽스 API를 공통 구조로 다루는 방법**을 배우고자 했습니다. 공통 코어와 Direct3D 12·Vulkan·Metal 백엔드를 나누어 개발하고, 도형을 그리는 작은 예제부터 3D 장면까지 연결했습니다.
+[dyf 예제](examples/dyf)는 도형과 장면 구성부터, [RHI 예제](examples/RHI)는 GPU 장치와 명령 구성부터 살펴볼 수 있습니다.
 
-dy_engine은 **동양미래대학교 컴퓨터소프트웨어공학과의 2026 졸업작품 프로젝트**입니다. 결과 화면뿐 아니라, 그 화면이 만들어지는 코드와 설계도 함께 살펴볼 수 있도록 구성했습니다.
+| 단계 | 확인할 수 있는 것 | 예제 |
+| --- | --- | --- |
+| 도형 | 점·선·사각형·원 그리기 | [Primitives](examples/dyf/01_Primitives) |
+| 3D 장면 | 메시의 표면을 바꾸고 객체를 배치하기 | [Mesh & Material](examples/dyf/05_MeshMaterial) · [Scene](examples/dyf/08_Scene) |
+| GPU 작업 | 장치를 만들고 작업을 제출하기 | [Device & Present](examples/RHI/01_DeviceAndPresent) |
+| GPU 계산 | 그리기 외의 계산 작업 구성하기 | [Compute Pipeline](examples/RHI/08_ComputePipeline) |
+| 병렬 기록 | 여러 스레드에서 그리기 명령 준비하기 | [Parallel Recording](examples/RHI/10_ParallelRecording) |
+| 패스 구성 | 여러 렌더링 작업의 의존 관계 연결하기 | [Render Graph](examples/RHI/11_RenderGraph) |
+| 고급 기법 | 조명·그림자·후처리·컬링 실험하기 | [Advanced](examples/advanced) |
 
-## 왜 dy_engine인가?
+<a id="더-큰-장면으로-확장하기"></a>
 
-**작은 예제에서 시작할 수 있습니다.** 점과 선을 그린 다음 메시, 재질, 조명으로 넘어갑니다. 처음부터 큰 장면이나 외부 모델 파일을 준비할 필요가 없습니다.
+<details>
+<summary>더 큰 장면: Arena · Culling · Cinematic</summary>
 
-**필요한 깊이까지 직접 다룰 수 있습니다.** 화면을 만들 때는 도형·장면 API를 사용하고, GPU 동작을 실험할 때는 자원과 그리기 명령을 직접 구성합니다. 이 저수준 공통 인터페이스를 **RHI(Rendering Hardware Interface)**라고 부릅니다.
-
-**코드와 한국어 문서를 함께 읽을 수 있습니다.** 예제로 사용 흐름을 보고, [공식 문서](https://dyd-dev.github.io/dy_engine/docs/index.html)에서 각 API의 역할·사용 조건·자원 수명을 확인할 수 있습니다.
-
-| 이런 작업을 하고 싶다면 | 여기서 시작하세요 |
+| Showcase | 살펴볼 내용 |
 | --- | --- |
-| C++로 도형이나 간단한 3D 화면 만들기 | [dyf 예제](examples/dyf) |
-| GPU에 작업을 보내는 과정 이해하기 | [RHI 예제](examples/RHI) |
-| 조명·그림자·컬링 같은 기법 실험하기 | [Advanced 예제](examples/advanced) |
+| [Arena](showcase/arena) | 타일·모델 자산을 사용하는 장면 예제 |
+| [Culling](showcase/culling) | GPU 컬링을 다루는 예제 |
+| [Cinematic](showcase/cinematic) | 외부 환경 모델과 HDR 자산을 사용하는 장면 예제 |
+
+고급 예제는 확장 옵션과 GPU·백엔드 기능에 따라 사용 조건이 달라집니다. Showcase의 외부 모델·텍스처·HDR은 저장소에 모두 포함되어 있지 않으므로 [자산 준비와 경로 설정](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html#assets)을 확인하세요.
+
+</details>
 
 ## 빠른 시작
 
@@ -93,7 +131,7 @@ cmake --build build/d3d12 --config Release --target DyfPrimitives
 <details>
 <summary>도형을 그리는 코드는 어떻게 생겼나요?</summary>
 
-창과 Renderer를 준비한 뒤, Canvas에 그릴 도형을 추가하는 부분입니다.
+창과 Renderer를 준비한 뒤, Canvas에 그릴 도형을 추가하는 부분입니다. **초기화와 이벤트 루프를 생략한 발췌 코드입니다.**
 
 ```cpp
 dyf::Canvas canvas(640, 480);
@@ -107,36 +145,11 @@ canvas.Line({80, 340}, {540, 340}, {1, 1, 1, 1}, 3.0f);
 
 </details>
 
-## 예제 둘러보기
+<a id="구조"></a>
 
-| 단계 | 확인할 수 있는 것 | 예제 |
-| --- | --- | --- |
-| 도형 | 점·선·사각형·원 그리기 | [Primitives](examples/dyf/01_Primitives) |
-| 3D 장면 | 메시의 표면을 바꾸고 객체를 배치하기 | [Mesh & Material](examples/dyf/05_MeshMaterial) · [Scene](examples/dyf/08_Scene) |
-| GPU 작업 | 장치를 만들고 작업을 제출하기 | [Device & Present](examples/RHI/01_DeviceAndPresent) |
-| GPU 계산 | 그리기 외의 계산 작업 구성하기 | [Compute Pipeline](examples/RHI/08_ComputePipeline) |
-| 병렬 기록 | 여러 스레드에서 그리기 명령 준비하기 | [Parallel Recording](examples/RHI/10_ParallelRecording) |
-| 패스 구성 | 여러 렌더링 작업의 의존 관계 연결하기 | [Render Graph](examples/RHI/11_RenderGraph) |
-| 고급 기법 | 조명·그림자·후처리·컬링 실험하기 | [Advanced](examples/advanced) |
+## 설계와 구조
 
-<a id="더-큰-장면으로-확장하기"></a>
-
-<details>
-<summary>더 큰 장면: Arena · Culling · Cinematic</summary>
-
-| Showcase | 살펴볼 내용 |
-| --- | --- |
-| [Arena](showcase/arena) | 타일·모델 자산을 사용하는 장면 예제 |
-| [Culling](showcase/culling) | GPU 컬링을 다루는 예제 |
-| [Cinematic](showcase/cinematic) | 외부 환경 모델과 HDR 자산을 사용하는 장면 예제 |
-
-고급 예제는 확장 옵션과 GPU·백엔드 기능에 따라 사용 조건이 달라집니다. Showcase의 외부 모델·텍스처·HDR은 저장소에 모두 포함되어 있지 않으므로 [자산 준비와 경로 설정](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html#assets)을 확인하세요.
-
-</details>
-
-## 구조
-
-**장면을 구성하는 코드 → 공통 GPU 인터페이스 → 각 그래픽스 API** 순서로 이어집니다. GPU 동작을 직접 실험할 때는 가운데의 RHI부터 사용할 수도 있습니다.
+**장면을 구성하는 코드 → 공통 GPU 인터페이스 → 각 그래픽스 API** 순서로 이어집니다. 이 공통 GPU 인터페이스를 **RHI(Rendering Hardware Interface)**라고 부릅니다. GPU 동작을 직접 실험할 때는 RHI부터 사용할 수도 있습니다.
 
 ```mermaid
 flowchart TD
@@ -148,11 +161,11 @@ flowchart TD
     RHI --> Metal["Metal"]
 ```
 
-<details>
-<summary>데이터 지향 설계·명시적 GPU 제어·확장 모듈 자세히 보기</summary>
-
 - **데이터 지향 설계:** 작업할 데이터를 어떻게 배치하고 읽을지 고려하는 설계입니다. Scene은 메시·재질·객체 변환 등을 분리된 배열로 관리합니다.
 - **명시적 GPU 제어:** GPU 자원을 언제 어떤 상태로 사용하고 명령을 언제 제출할지 직접 정하는 방식입니다. RHI에서 자원 상태 전이와 명령 기록·제출을 다룹니다.
+
+<details>
+<summary>모듈과 확장 기능 자세히 보기</summary>
 
 | 구성 | 역할 | 더 알아보기 |
 | --- | --- | --- |
@@ -167,23 +180,30 @@ flowchart TD
 
 </details>
 
-## 지원 플랫폼
+<a id="문서"></a>
 
-백엔드는 공통 RHI를 실제 그래픽스 API에 연결하는 구현입니다. 아래는 저장소의 플랫폼별 구성입니다.
+## 문서 안내
 
-| 플랫폼 | 그래픽스 백엔드 | 선택 방식 |
-| --- | --- | --- |
-| Windows | Direct3D 12 / Vulkan | `USE_D3D12` 또는 `USE_VULKAN` 중 하나 활성화 |
-| Linux | Vulkan | 자동 선택, 창 시스템은 X11 / Wayland |
-| macOS | Metal | 자동 선택 |
-| Android | Vulkan | Android 앱 프로젝트 |
-| iOS | Metal | iOS 앱 프로젝트 |
+코드와 한국어 문서를 함께 읽을 수 있습니다. 예제로 사용 흐름을 보고, 공식 문서에서 각 API의 역할·사용 조건·자원 수명을 확인할 수 있습니다.
 
-기능별 지원 여부는 백엔드와 장치에 따라 달라집니다. Windows에서 두 백엔드 옵션을 모두 끄면 실제 화면을 그리지 않는 Null 백엔드가 선택됩니다. 데스크톱 ImGui 확장은 모바일에서 사용할 수 없으며, Metal 캡처에는 Xcode GPU Capture를 사용합니다.
+| 궁금한 내용 | 문서 |
+| --- | --- |
+| 개발 도구와 실행 환경을 준비하고 싶어요 | [시작하기](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html) |
+| 내 앱에서 첫 화면을 그리고 싶어요 | [빠른 시작](https://dyd-dev.github.io/dy_engine/docs/component/quickstart.html) |
+| 특정 함수나 타입의 사용법을 찾고 싶어요 | [API 레퍼런스](https://dyd-dev.github.io/dy_engine/docs/component/api-index.html) |
+| 셰이더와 외부 입력의 조건이 궁금해요 | [Renderer 입력 준비](https://dyd-dev.github.io/dy_engine/docs/component/renderer-inputs.html) |
 
-## CMake 빌드 옵션
+[공식 문서 첫 화면](https://dyd-dev.github.io/dy_engine/docs/index.html)
+
+## 개발 안내
+
+### CMake 빌드 옵션
 
 필요한 기능만 켜서 빌드할 수 있습니다. 처음에는 빠른 시작의 기본 옵션으로 실행하고, 다른 백엔드나 확장을 사용할 때 아래 표를 참고하세요.
+
+Windows에서는 `USE_D3D12` 또는 `USE_VULKAN` 중 하나를 활성화합니다. 둘 다 끄면 실제 화면을 그리지 않는 Null 백엔드가 선택됩니다.
+
+Linux의 Vulkan과 macOS의 Metal은 자동 선택됩니다.
 
 <details>
 <summary>전체 옵션과 기본값 보기</summary>
@@ -206,7 +226,7 @@ flowchart TD
 
 </details>
 
-## CI
+### CI
 
 CI는 코드를 올릴 때 자동으로 빌드를 확인하는 절차입니다. 저장소에는 다음 구성이 있으며, **빌드 확인과 실기기 실행·성능 검증은 구분합니다.**
 
@@ -225,17 +245,6 @@ CI는 코드를 올릴 때 자동으로 빌드를 확인하는 절차입니다. 
 
 [CI 안내](.github/ci/README.md) · [원본 저장소의 빌드 결과](https://github.com/dyd-dev/dy_engine/actions/workflows/ci.yml)
 
-## 문서
-
-| 궁금한 내용 | 문서 |
-| --- | --- |
-| 개발 도구와 실행 환경을 준비하고 싶어요 | [시작하기](https://dyd-dev.github.io/dy_engine/docs/component/getting-started.html) |
-| 내 앱에서 첫 화면을 그리고 싶어요 | [빠른 시작](https://dyd-dev.github.io/dy_engine/docs/component/quickstart.html) |
-| 특정 함수나 타입의 사용법을 찾고 싶어요 | [API 레퍼런스](https://dyd-dev.github.io/dy_engine/docs/component/api-index.html) |
-| 셰이더와 외부 입력의 조건이 궁금해요 | [Renderer 입력 준비](https://dyd-dev.github.io/dy_engine/docs/component/renderer-inputs.html) |
-
-[공식 문서 첫 화면](https://dyd-dev.github.io/dy_engine/docs/index.html)
-
 ## 개발팀
 
 | 개발자 | 담당 영역 | GitHub |
@@ -244,3 +253,9 @@ CI는 코드를 올릴 때 자동으로 빌드를 확인하는 절차입니다. 
 | **윤훈** | Vulkan | [@yunhoon0206](https://github.com/yunhoon0206) |
 | **정준혁** | Metal | [@Wnsgur7318](https://github.com/Wnsgur7318) |
 | **정현진** | DirectX 12 | [@junghj0724](https://github.com/junghj0724) |
+
+<a id="제작-배경"></a>
+
+### 프로젝트 배경
+
+동양미래대학교 컴퓨터소프트웨어공학과의 **2026 졸업작품 프로젝트**입니다. 공통 코어와 Direct3D 12·Vulkan·Metal 백엔드를 나누어 개발했습니다. 결과 화면과 함께 구현 코드와 설계도 살펴볼 수 있도록 예제와 한국어 문서를 정리했습니다.
