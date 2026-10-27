@@ -1,28 +1,35 @@
-<p align="center">
-  <img src="docs/assets/readme/dy-engine-banner.png" alt="dy_engine — Graphics framework" width="520">
-</p>
-
-<h1 align="center">dy_engine</h1>
+<a id="dy_engine"></a>
 
 <p align="center">
-  <strong>C++로 2D 도형과 3D 장면을 그리는 그래픽스 프레임워크</strong><br>
-  화면을 그리는 과정을 직접 만들고 이해하기 위해 시작한 졸업작품입니다.
+  <img src="docs/assets/readme/dy-engine-banner.png" alt="dy_engine — Graphics framework">
 </p>
+
+# dy_engine — C++ Graphics Framework
+
+**2D·3D 장면 구성과 GPU 제어를 위한 C++ 그래픽스 프레임워크**
 
 <p align="center">
-  <a href="#실행-화면">실행 화면 보기</a> ·
-  <a href="#빠른-시작">직접 실행하기</a> ·
-  <a href="https://dyd-dev.github.io/dy_engine/docs/index.html">공식 문서</a> ·
-  <a href="#개발팀">개발팀</a>
+  <a href="#소개">소개</a> ·
+  <a href="#실행-화면">실행 예제</a> ·
+  <a href="#빠른-시작">시작하기</a> ·
+  <a href="https://dyd-dev.github.io/dy_engine/docs/index.html">API 문서</a>
 </p>
 
-<p align="center">동양미래대학교 컴퓨터소프트웨어공학과 · 2026 졸업작품 프로젝트</p>
+## 소개
 
----
+dy_engine은 C++로 2D·3D 장면을 만들고, GPU가 그리는 과정을 직접 다룰 수 있는 그래픽스 프레임워크입니다.
+
+Direct3D 12·Vulkan·Metal을 공통 인터페이스로 연결하며, 장면을 구성하는 기능부터 GPU 자원과 그리기 명령을 관리하는 기능까지 제공합니다.
+
+데이터가 어떻게 저장되고 처리되어 화면으로 그려지는지 직접 설계하고 이해하기 위해 개발했습니다.
+
+**데이터 지향 설계(DOD) · 명시적 GPU 제어**
+
+<sub>동양미래대학교 컴퓨터소프트웨어공학과 · 2026 졸업작품 프로젝트</sub>
 
 ## 실행 화면
 
-dy_engine은 개발자가 C++ 프로그램에 연결해 쓰는 그래픽스 프레임워크입니다. 아래 화면은 이 저장소의 예제를 직접 빌드하고 실행해 촬영했습니다.
+아래 화면은 이 저장소의 예제를 직접 빌드하고 실행해 촬영했습니다.
 
 | 2D 도형 그리기 | 3D 모델의 재질과 조명 표현하기 |
 | --- | --- |
