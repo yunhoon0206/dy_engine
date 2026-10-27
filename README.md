@@ -149,7 +149,7 @@ canvas.Line({80, 340}, {540, 340}, {1, 1, 1, 1}, 3.0f);
 
 ## 설계와 구조
 
-**장면을 구성하는 코드 → 공통 GPU 인터페이스 → 각 그래픽스 API** 순서로 이어집니다. 이 공통 GPU 인터페이스를 **RHI(Rendering Hardware Interface)**라고 부릅니다. GPU 동작을 직접 실험할 때는 RHI부터 사용할 수도 있습니다.
+**장면을 구성하는 코드 → 공통 GPU 인터페이스 → 각 그래픽스 API** 순서로 이어집니다. 이 공통 GPU 인터페이스를 **RHI**(Rendering Hardware Interface)라고 부릅니다. GPU 동작을 직접 실험할 때는 RHI부터 사용할 수도 있습니다.
 
 ```mermaid
 flowchart TD
